@@ -28,7 +28,6 @@ withFileOrDefaultHandle "-"      otherMode        _      = error $ "Incompatible
                                                                 ++ ") for `-` in withFileOrDefaultHandle."
 withFileOrDefaultHandle filename ioMode           action = withFile filename ioMode action
 
--- Missing instances
-instance Hashable a => Hashable (Set.Set a) where
-  hashWithSalt = Set.foldr (flip hashWithSalt)
-
+---- Missing instances
+--instance Hashable a => Hashable (Set.Set a) where
+--  hashWithSalt = Set.foldr (flip hashWithSalt)
