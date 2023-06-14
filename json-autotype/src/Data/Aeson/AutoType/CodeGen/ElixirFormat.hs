@@ -184,7 +184,9 @@ formatType (TUnion u)                        = wrap <$> case length nonNull of
     wrap   inner  | TNull `Set.member` u = Text.concat [inner, " | nil"]
                   | otherwise            =              inner
 formatType (TArray a)                        = do inner <- formatType a
-                                                  return $ Text.concat ["[", inner, "]"]
+                                                  return $ case inner of
+                                                             "any" -> "list"
+                                                             _ -> Text.concat ["[", inner, "]"]
 formatType (TObj   o)                        = do ident <- genericIdentifier
                                                   newDecl ident d
   where
