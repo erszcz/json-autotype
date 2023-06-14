@@ -61,7 +61,9 @@ tShow = Text.pack . show
 
 -- | Wrap a type alias.
 wrapAlias :: Text -> Text -> Text
-wrapAlias identifier contents = Text.unwords ["@type", identifier, "::", contents]
+wrapAlias identifier contents = Text.concat ["defmodule ", identifier, " do\n",
+                                             "@type t ::", contents,
+                                             "\nend"]
 
 -- | Wrap a data type declaration
 wrapDecl ::  Text -> Text -> [(Text, Text, Text, Bool)] -> Text
